@@ -1,0 +1,52 @@
+@tailwind base;
+
+@tailwind components;
+
+@tailwind utilities;
+
+.textMain {
+  @apply text-yellow-500;
+}
+.bgMain {
+  @apply bg-yellow-500;
+}
+.borderMain {
+  @apply border-yellow-500;
+}
+.hoverBg {
+  @apply hover:bg-yellow-600;
+}
+.hoverTextMain {
+  @apply hover:text-yellow-600;
+}
+.textSecondary {
+  @apply text-white;
+}
+.bgSecondary {
+  @apply bg-white;
+}
+.hoverTextSecondary {
+  @apply hover:text-white;
+}
+.hoverBgSecondary {
+  @apply hover:bg-white;
+}
+.lds-dual-ring:after {
+  content: " ";
+  display: block;
+  width: 64px;
+  height: 64px;
+  margin: 8px;
+  border-radius: 50%;
+  border: 6px solid #f59e0b;
+  border-color: #f59e0b transparent #f59e0b transparent;
+  animation: lds-dual-ring 1.2s linear infinite;
+}
+@keyframes lds-dual-ring {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
