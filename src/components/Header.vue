@@ -22,12 +22,7 @@
 
 <script lang="ts">
 import { defineComponent } from "@vue/runtime-core";
-import {
-  ClockIcon,
-  MailIcon,
-  EmojiHappyIcon,
-  HeartIcon,
-} from "@heroicons/vue/outline";
+import { ClockIcon, MailIcon, EmojiHappyIcon, HeartIcon } from "@heroicons/vue/outline";
 
 export default defineComponent({
   name: "Header",

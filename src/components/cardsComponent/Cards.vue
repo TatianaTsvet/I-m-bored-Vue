@@ -1,7 +1,5 @@
 <template>
-  
-    <CardList @fetchActivity="fetchActivity" />
-  
+  <CardList @fetchActivity="fetchActivity" />
 </template>
 <script lang="ts">
 import { defineComponent } from "vue";
@@ -17,23 +15,20 @@ export default defineComponent({
   },
   methods: {
     async fetchActivity(title: string) {
+      this.$emit("isLoading", true);
       const newType = title.replace(" ", "");
       try {
-        this.$emit("isLoading", true);
-        setTimeout(async () => {
-          await axios
-            .get(`https://www.boredapi.com/api/activity?${newType}`)
-            .then((response) => {
-              this.$emit("getActivity", response.data);
-            });
-        }, 20000);
-       
+        axios.get(`https://www.boredapi.com/api/activity?${newType}`).then((response) => {
+          this.$emit("getActivity", response.data);
+        });
       } catch (e) {
         console.log(e);
-      } finally {
+      }
+
+      setTimeout(() => {
         this.$emit("isLoading", false);
         this.$emit("openModal", true);
-      }
+      }, 2000);
     },
   },
 });

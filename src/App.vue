@@ -1,18 +1,14 @@
-<template >
+<template>
   <div class="mx-auto p-1">
     <Header />
-    <Cards
-      @openModal="openModal"
-      @getActivity="getActivity"
-      @isLoading="isLoading"
-    />
+    <Cards @openModal="openModal" @getActivity="getActivity" @isLoading="isLoading" />
     <NewActivityModal
       @openModal="openModal"
-      modalVisible:="modalVisible"
+      v-model:modalVisible="modalVisible"
       v-model:randomActivity="randomActivity"
       @addToFavorites="addToFavorites"
     />
-    <Spinner v-model:loading="isActivityLoading" />
+    <Spinner v-model:isActivityLoading="isActivityLoading" />
   </div>
 </template>
 
@@ -32,14 +28,12 @@ export default defineComponent({
     Spinner,
   },
   data() {
-   
     return {
       likedActivity: JSON.parse(localStorage.getItem("favoritesList") ?? "[]"),
       historyActivity: JSON.parse(localStorage.getItem("historyList") ?? "[]"),
       modalVisible: false,
       randomActivity: {},
       isActivityLoading: false,
-      
     };
   },
   methods: {
@@ -48,13 +42,10 @@ export default defineComponent({
     },
 
     isLoading(loading: boolean) {
-     
       this.isActivityLoading = loading;
-       console.log(this.isActivityLoading)
     },
-    
+
     getActivity(newActivity: IActivity) {
-     
       const randomActivity = { ...newActivity, liked: false };
       const sameHistoryActivity = !!this.historyActivity.find(
         (item: { key: number }) => item.key === newActivity.key
@@ -75,15 +66,13 @@ export default defineComponent({
         ? this.likedActivity
         : [...this.likedActivity, likeActivity];
 
-      this.historyActivity = this.historyActivity.map(
-        (item: { key: number }) => {
-          if (item.key === favoriteActivity.key) {
-            return { ...item, liked: true };
-          } else {
-            return item;
-          }
+      this.historyActivity = this.historyActivity.map((item: { key: number }) => {
+        if (item.key === favoriteActivity.key) {
+          return { ...item, liked: true };
+        } else {
+          return item;
         }
-      );
+      });
       localStorage.setItem("historyList", JSON.stringify(this.historyActivity));
       localStorage.setItem("favoritesList", JSON.stringify(this.likedActivity));
     },

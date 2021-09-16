@@ -23,7 +23,7 @@
           <h6>{{ item.subtitle }}</h6>
         </div>
         <button
-          @click="openActivityModal(item.title)"
+          @click="getActivity(item.title)"
           class="
             justify-self-end
             flex flex-wrap
@@ -77,8 +77,7 @@ export default defineComponent({
     };
   },
   methods: {
-    openActivityModal(title: string) {
-      this.$emit("openModal", true);
+    getActivity(title: string) {
       this.$emit("fetchActivity", title);
     },
   },

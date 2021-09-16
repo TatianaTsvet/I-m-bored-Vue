@@ -15,18 +15,7 @@
     "
   >
     <div class="w-auto my-6 mx-auto max-w-3xl">
-      <div
-        class="
-          border-0
-          rounded-lg
-          shadow-lg
-          w-96
-          flex flex-col
-          items-center
-          m-2
-          content-center
-        "
-      >
+      <div class="border-0 rounded-lg shadow-lg w-96 flex flex-col items-center m-2 content-center">
         <div
           @click.stop
           :key="randomActivity.key"
@@ -72,15 +61,10 @@
               "
             >
               <HeartIcon class="w-7 h-7" />
-
-              
             </button>
           </div>
           <div>
-            <button
-              @click="hideModal"
-              class="rounded-full textMain hoverBg hoverTextSecondary"
-            >
+            <button @click="hideModal" class="rounded-full textMain hoverBg hoverTextSecondary">
               <XIcon class="w-7 h-7 m-2" />
             </button>
           </div>
@@ -102,7 +86,6 @@ export default defineComponent({
   props: {
     modalVisible: {
       type: Boolean,
-      
     },
     randomActivity: {
       type: Object,

@@ -19,11 +19,7 @@
     "parser": "@typescript-eslint/parser",
     "sourceType": "module"
   },
-  "plugins": [
-    "vue",
-    "@typescript-eslint",
-    "prettier"
-  ],
+  "plugins": ["vue", "@typescript-eslint", "prettier"],
   "rules": {
     "import/no-extraneous-dependencies": 0,
     "@typescript-eslint/no-explicit-any": 0

@@ -1,7 +1,7 @@
 <template>
   <div
-    v-if="loading === true"
-    
+    v-if="isActivityLoading"
+    @click="isloading"
     class="
       justify-center
       items-center
@@ -15,19 +15,8 @@
     "
   >
     <div class="w-auto my-6 mx-auto max-w-3xl">
-      <div
-        class="
-          border-0
-          rounded-lg
-          shadow-lg
-          w-96
-          flex flex-col
-          items-center
-          m-2
-        "
-      >
+      <div class="border-0 rounded-lg shadow-lg w-96 flex flex-col items-center m-2">
         <div
-          @click.stop
           class="
             border-0
             h-40
@@ -53,16 +42,20 @@
 
 <script lang="ts">
 import { defineComponent } from "@vue/runtime-core";
-
 export default defineComponent({
   name: "Spinner",
 
   props: {
-    loading: {
+    isActivityLoading: {
       type: Boolean,
       default: false,
+      required: true,
     },
   },
- 
+  methods: {
+    isloading() {
+      console.log(this.isActivityLoading);
+    },
+  },
 });
 </script>
