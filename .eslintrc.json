@@ -7,7 +7,6 @@
     "commonjs": true
   },
   "extends": [
-    "airbnb-base",
     "eslint:recommended",
     "plugin:vue/recommended",
     "prettier",
@@ -22,6 +21,5 @@
   "rules": {
     "import/no-extraneous-dependencies": 0,
     "@typescript-eslint/no-explicit-any": 0
-
   }
 }

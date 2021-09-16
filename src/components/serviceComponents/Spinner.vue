@@ -1,7 +1,7 @@
 <template>
   <div
-    v-if="show === true"
-    @click="hideModal"
+    v-if="loading === true"
+    
     class="
       justify-center
       items-center
@@ -58,15 +58,11 @@ export default defineComponent({
   name: "Spinner",
 
   props: {
-    show: {
+    loading: {
       type: Boolean,
-      default: true,
+      default: false,
     },
   },
-  methods: {
-    hideModal() {
-      this.$emit("openModal", false);
-    },
-  },
+ 
 });
 </script>

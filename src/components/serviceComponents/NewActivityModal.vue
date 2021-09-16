@@ -1,6 +1,6 @@
 <template>
   <div
-    v-if="show === true"
+    v-if="modalVisible === true"
     @click="hideModal"
     class="
       justify-center
@@ -98,9 +98,9 @@ export default defineComponent({
   components: { HeartIcon, UserIcon, XIcon },
 
   props: {
-    show: {
+    modalVisible: {
       type: Boolean,
-      default: true,
+      
     },
     randomActivity: {
       type: Object,

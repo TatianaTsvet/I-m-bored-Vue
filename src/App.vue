@@ -1,14 +1,18 @@
-<template>
-  <div className=" mx-auto p-1">
+<template >
+  <div class="mx-auto p-1">
     <Header />
-    <Cards @openModal="openModal" @getActivity="getActivity" />
+    <Cards
+      @openModal="openModal"
+      @getActivity="getActivity"
+      @isLoading="isLoading"
+    />
     <NewActivityModal
       @openModal="openModal"
-      v-model:show="modalVisible"
+      modalVisible:="modalVisible"
       v-model:randomActivity="randomActivity"
       @addToFavorites="addToFavorites"
     />
-    <!-- <Spinner/> -->
+    <Spinner v-model:loading="isActivityLoading" />
   </div>
 </template>
 
@@ -25,34 +29,35 @@ export default defineComponent({
     Header,
     Cards,
     NewActivityModal,
-
-    
     Spinner,
   },
   data() {
+   
     return {
-      modalVisible: false,
-      randomActivity: {},
       likedActivity: JSON.parse(localStorage.getItem("favoritesList") ?? "[]"),
       historyActivity: JSON.parse(localStorage.getItem("historyList") ?? "[]"),
+      modalVisible: false,
+      randomActivity: {},
+      isActivityLoading: false,
+      
     };
   },
   methods: {
     openModal(modal: boolean) {
       this.modalVisible = modal;
     },
-    filterActivity(stateActivity: IActivity[], activityKey: number) {
-      stateActivity.filter((item) => item.key !== activityKey);
-    },
-    findActivity(stateActivity: IActivity[], activityKey: number): void {
-      stateActivity.find((item) => item.key === activityKey);
-    },
 
+    isLoading(loading: boolean) {
+     
+      this.isActivityLoading = loading;
+       console.log(this.isActivityLoading)
+    },
+    
     getActivity(newActivity: IActivity) {
+     
       const randomActivity = { ...newActivity, liked: false };
-      const sameHistoryActivity = !!this.findActivity(
-        this.historyActivity,
-        newActivity.key
+      const sameHistoryActivity = !!this.historyActivity.find(
+        (item: { key: number }) => item.key === newActivity.key
       );
       this.historyActivity = sameHistoryActivity
         ? this.historyActivity
@@ -63,7 +68,6 @@ export default defineComponent({
     },
     addToFavorites(favoriteActivity: IActivity) {
       const likeActivity = { ...favoriteActivity, liked: true };
-      //  const sameActivity = !!this.findActivity(this.likedActivity, favoriteActivity.key);
       const sameActivity = !!this.likedActivity.find(
         (item: { key: number }) => item.key === favoriteActivity.key
       );
